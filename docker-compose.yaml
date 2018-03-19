@@ -1,0 +1,25 @@
+version: "3"
+services:
+
+  webapp:
+    build: .
+    networks: 
+      - mynetwork
+    expose:
+      - 8000
+    ports:
+      - 8000:8000
+
+  locust:
+    build:
+      context: ./locust
+    networks:
+      - mynetwork
+    ports:
+      - 8089:8089
+    environment:
+      LOCUST_MODE: standalone
+      TARGET_HOST: http://webapp:8000
+
+networks:
+  mynetwork:
