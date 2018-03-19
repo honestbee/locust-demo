@@ -25,3 +25,14 @@ make run-web
 ```sh
 make run-locust
 ```
+
+## Release
+
+- By default image repo will match git remote `origin`, e.g. `johndoe/locust-demo`
+- To override or if you are not pushing to default docker registry, env `IMAGE` must be set
+- Make sure you are logged in to the registry you are pushing to
+
+```sh
+docker login -u="johndoe" -p="<name_of_your_hamster>" quay.io
+IMAGE=quay.io/johndoe/locust-demo make release
+```
